@@ -3,12 +3,16 @@ from circleshape import CircleShape
 from constants import *
 from shot import Shot
 
+
+
 class Player(CircleShape):
 
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
         self.timer = 0
+        self.reef = pygame.image.load("images/reef_head.png").convert_alpha()
+        self.reef = pygame.transform.scale(self.reef, (100,100))
     
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -19,7 +23,12 @@ class Player(CircleShape):
         return [a, b, c]
 
     def draw(self, screen):
-        pygame.draw.polygon(screen, "white", self.triangle(), 2)
+        #pygame.draw.polygon(screen, "white", self.triangle(), 2)
+        
+        reef = pygame.transform.rotate(self.reef, -self.rotation)
+        #print(self.rotation)
+        screen.blit(reef, (self.position.x-50, self.position.y-50))
+        
     
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
