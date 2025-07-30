@@ -9,15 +9,19 @@ class Score(CircleShape):
         super().__init__(x, y, 7)
         self.total_points = 0
         self.font = pygame.font.Font(None, 36)
+        self.font_color = "white"
+        self.time_to_be_red = 0
 
     def draw(self, screen):
-        text = self.font.render(f"Good job Reef! You defeated {self.total_points} peppers!", 1, "white")
-        textpos = text.get_rect(centerx=SCREEN_WIDTH/2)
+        text = self.font.render(f"Good job Reef! You defeated {self.total_points} peppers!", 1, self.font_color)
+        textpos = text.get_rect(center=(SCREEN_WIDTH/2, 100))
         screen.blit(text, textpos)
         
-
     def update(self, dt):
         pass
 
-    def add_points(self):
+    def add_points(self, dt):
+
+        self.font_color = "red"
         self.total_points += 1
+        

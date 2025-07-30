@@ -11,7 +11,8 @@ class Asteroid(CircleShape):
     def draw(self, screen):
         #pygame.draw.circle(screen, "white", self.position, self.radius, 2)
         pepper = pygame.transform.scale(self.pepper, (self.radius*2, self.radius*2))
-        screen.blit(pepper, (self.position.x-50, self.position.y-50))
+        pepperpos = pepper.get_rect(center=(self.position.x, self.position.y))
+        screen.blit(pepper, pepperpos)
 
     def update(self, dt):
         self.position += self.velocity * dt

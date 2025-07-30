@@ -50,7 +50,7 @@ def main():
                 if asteroid.collides_with(bullet):
                     asteroid.split()
                     bullet.kill()
-                    score.add_points()
+                    score.add_points(dt)
 
         screen.fill(color="black")
         

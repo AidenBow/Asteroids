@@ -27,7 +27,8 @@ class Player(CircleShape):
         
         reef = pygame.transform.rotate(self.reef, -self.rotation)
         #print(self.rotation)
-        screen.blit(reef, (self.position.x-50, self.position.y-50))
+        reefpos = reef.get_rect(center=(self.position.x, self.position.y))
+        screen.blit(reef, reefpos)
         
     
     def rotate(self, dt):
